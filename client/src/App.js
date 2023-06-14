@@ -13,6 +13,7 @@ import store from "./store";
 import Alert from "./components/layout/Alert";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
+import CreateProfile from "./components/profile-forms/CreateProfile";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -53,6 +54,16 @@ const App = () => {
                 <PrivateRoute>
                   <section className="container">
                     <Dashboard />
+                  </section>
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/create-profile"
+              element={
+                <PrivateRoute>
+                  <section className="container">
+                    <CreateProfile />
                   </section>
                 </PrivateRoute>
               }

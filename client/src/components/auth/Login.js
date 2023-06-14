@@ -31,7 +31,7 @@ const Login = ({ login, isAuthenticated }) => {
       <p className="lead">
         <i className="fas fa-user"></i> Sign In to Your Account
       </p>
-      <form className="form" onSubmit={(e) => onsubmit(e)}>
+      <form className="form" onSubmit={onsubmit}>
         <div className="form-group">
           <input
             type="email"
