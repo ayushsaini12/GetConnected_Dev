@@ -10,6 +10,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import ProfileForm from "./components/profile-forms/ProfileForm";
 import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
+import Profiles from "./components/profiles/Profiles";
 // import EditProfile from "./components/profile-forms/EditProfile";
 // Redux
 import { Provider } from "react-redux";
@@ -48,6 +49,14 @@ const App = () => {
               element={
                 <section className="container">
                   <Login />
+                </section>
+              }
+            />
+            <Route
+              path="/profiles"
+              element={
+                <section className="container">
+                  <Profiles />
                 </section>
               }
             />
