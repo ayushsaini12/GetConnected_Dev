@@ -40,6 +40,12 @@ router.post(
     ],
   ],
   async (req, res) => {
+    const checkUrl = (url) => {
+      if (!/^(f|ht)tps?:\/\//i.test(url)) {
+        url = "https://" + url;
+      }
+      return url.toString();
+    };
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array });
@@ -64,7 +70,7 @@ router.post(
     profileFields.user = req.user.id;
 
     if (company) profileFields.company = company;
-    if (website) profileFields.website = website;
+    if (website) profileFields.website = checkUrl(website);
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;

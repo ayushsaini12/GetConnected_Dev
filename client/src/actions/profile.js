@@ -80,18 +80,14 @@ export const getProfileByID = (userId) => async (dispatch) => {
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
-
     dispatch({
       type: GET_REPOS,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
