@@ -1,29 +1,24 @@
-import React, { Fragment, useEffect } from "react";
-import { connect } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import Spinner from "../layout/Spinner";
-import PropTypes from "prop-types";
-import { getProfileByID } from "../../actions/profile";
-import ProfileTop from "./ProfileTop";
-import ProfileAbout from "./ProfileAbout";
-import ProfileExperience from "./ProfileExperience";
-import ProfileEducation from "./ProfileEducation";
-import ProfileGithub from "./ProfileGithub";
+import React, { Fragment, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Link, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Spinner from '../layout/Spinner';
+import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout';
+import ProfileExperience from './ProfileExperience';
+import ProfileEducation from './ProfileEducation';
+import ProfileGithub from './ProfileGithub';
+import { getProfileById } from '../../actions/profile';
 
-const Profile = ({
-  getProfileByID,
-  profile: { profile, loading },
-  auth,
-  match,
-}) => {
+const Profile = ({ getProfileById, profile: { profile }, auth }) => {
   const { id } = useParams();
   useEffect(() => {
-    getProfileByID(id);
-  }, [getProfileByID, id]);
+    getProfileById(id);
+  }, [getProfileById, id]);
 
   return (
-    <Fragment>
-      {profile === null || loading ? (
+    <section className="container">
+      {profile === null ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -55,6 +50,7 @@ const Profile = ({
                 <h4>No experience credentials</h4>
               )}
             </div>
+
             <div className="profile-edu bg-white p-2">
               <h2 className="text-primary">Education</h2>
               {profile.education.length > 0 ? (
@@ -67,7 +63,7 @@ const Profile = ({
                   ))}
                 </Fragment>
               ) : (
-                <h4>No Education Credentials</h4>
+                <h4>No education credentials</h4>
               )}
             </div>
 
@@ -77,18 +73,19 @@ const Profile = ({
           </div>
         </Fragment>
       )}
-    </Fragment>
+    </section>
   );
 };
 
 Profile.propTypes = {
-  getProfileByID: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
-  auth: state.auth,
+  auth: state.auth
 });
-export default connect(mapStateToProps, { getProfileByID })(Profile);
+
+export default connect(mapStateToProps, { getProfileById })(Profile);

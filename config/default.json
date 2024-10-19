@@ -1,5 +1,5 @@
 {
-    "mongoURI" : "mongodb+srv://ayush:devconnector@cluster0.jelpd1y.mongodb.net/?retryWrites=true&w=majority", 
+    "mongoURI" : "mongodb+srv://ayush:devconnector@cluster0.jelpd1y.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", 
     "jwtSecret": "mysecrettoken",
     "githubClientId": "20246aef49eab4198148",
     "githubSecret": "85d964feaca07e6db9c54949cf140bc3fb07d60f"
